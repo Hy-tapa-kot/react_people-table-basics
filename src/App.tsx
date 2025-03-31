@@ -53,7 +53,10 @@ const PeoplePage = () => {
   return (
     <div>
       <h1 className="title">People Page</h1>
-      <table className="table is-striped is-hoverable is-narrow is-fullwidth" data-cy="peopleTable">
+      <table
+        className="table is-striped is-hoverable is-narrow is-fullwidth"
+        data-cy="peopleTable"
+      >
         <thead>
           <tr>
             <th>Name</th>
@@ -66,7 +69,7 @@ const PeoplePage = () => {
         </thead>
         <tbody>
           {people.map(person => (
-            <tr key={person.slug}>
+            <tr key={person.slug} data-cy="person">
               <td>
                 <PersonLink person={person} />
               </td>
