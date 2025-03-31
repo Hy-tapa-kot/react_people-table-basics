@@ -77,10 +77,10 @@ const PeoplePage = () => {
               <td>{person.born}</td>
               <td>{person.died}</td>
               <td>
-                {person.mother ? <PersonLink person={person.mother} /> : '-'}
+              {person.motherName ? person.motherName : '-'}
               </td>
               <td>
-                {person.father ? <PersonLink person={person.father} /> : '-'}
+              {person.fatherName ? person.fatherName : '-'}
               </td>
             </tr>
           ))}
@@ -125,10 +125,10 @@ const PersonPage = () => {
       <p>Born: {person.born}</p>
       <p>Died: {person.died}</p>
       <p>
-        Mother: {person.mother ? <PersonLink person={person.mother} /> : '-'}
+        Mother: {person.motherName ? person.motherName : '-'}
       </p>
       <p>
-        Father: {person.father ? <PersonLink person={person.father} /> : '-'}
+        Father: {person.fatherName ? person.fatherName : '-'}
       </p>
     </div>
   );
