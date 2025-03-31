@@ -39,7 +39,11 @@ const PeoplePage = () => {
   }
 
   if (error) {
-    return <p className="has-text-danger " data-cy="peopleLoadingError">Failed to load people.</p>;
+    return (
+      <p className="has-text-danger " data-cy="peopleLoadingError">
+        Failed to load people.
+      </p>
+    );
   }
 
   if (people.length === 0) {
@@ -49,7 +53,7 @@ const PeoplePage = () => {
   return (
     <div>
       <h1 className="title">People Page</h1>
-      <table className="table is-striped is-hoverable is-narrow is-fullwidth">
+      <table className="table is-striped is-hoverable is-narrow is-fullwidth" data-cy="peopleTable">
         <thead>
           <tr>
             <th>Name</th>
