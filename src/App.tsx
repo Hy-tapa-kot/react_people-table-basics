@@ -71,7 +71,7 @@ const PeoplePage = () => {
           {people.map(person => (
             <tr key={person.slug} data-cy="person">
               <td>
-                <PersonLink person={person} data-cy="person"/>
+                <PersonLink person={person} />
               </td>
               <td>{person.sex}</td>
               <td>{person.born}</td>
