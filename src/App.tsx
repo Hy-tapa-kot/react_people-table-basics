@@ -6,9 +6,15 @@ import { Loader } from './components/Loader'
 import { Person } from './types/Person'
 
 const PersonLink = ({ person }: { person?: Person }) => {
-  if (!person) return <span>-</span>;
+  if (!person) {
+return <span>-</span>;
+}
+
   return (
-    <NavLink to={`/people/${person.slug}`} className={person.sex === 'f' ? 'has-text-danger' : ''}>
+    <NavLink
+      to={`/people/${person.slug}`}
+      className={person.sex === 'f' ? 'has-text-danger' : ''}
+    >
       {person.name}
     </NavLink>
   );
@@ -28,8 +34,18 @@ const PeoplePage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <Loader />;
-  if (error) return <p className="has-text-danger">Failed to load people.</p>;
+  if (loading) {
+return <Loader />;
+}
+
+  if (error) {
+return <p className="has-text-danger">Failed to load people.</p>;
+}
+
+  if (people.length === 0) {
+
+return <p data-cy="noPeopleMessage">There are no people on the server</p>;
+}
 
   return (
     <div>
@@ -46,7 +62,7 @@ const PeoplePage = () => {
           </tr>
         </thead>
         <tbody>
-          {people.map((person) => (
+          {people.map(person => (
             <tr key={person.slug}>
               <td>
                 <PersonLink person={person} />
@@ -54,8 +70,12 @@ const PeoplePage = () => {
               <td>{person.sex}</td>
               <td>{person.born}</td>
               <td>{person.died}</td>
-              <td>{person.mother ? <PersonLink person={person.mother} /> : '-'}</td>
-              <td>{person.father ? <PersonLink person={person.father} /> : '-'}</td>
+              <td>
+                {person.mother ? <PersonLink person={person.mother} /> : '-'}
+              </td>
+              <td>
+                {person.father ? <PersonLink person={person.father} /> : '-'}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -72,25 +92,38 @@ const PersonPage = () => {
 
   useEffect(() => {
     getPeople()
-      .then((people) => {
-        const foundPerson = people.find((p) => p.slug === slug) || null;
+      .then(people => {
+        const foundPerson = people.find(p => p.slug === slug) || null;
+
         setPerson(foundPerson);
       })
       .catch(setError)
       .finally(() => setLoading(false));
   }, [slug]);
 
-  if (loading) return <Loader />;
-  if (error) return <p className="has-text-danger">Failed to load person.</p>;
-  if (!person) return <p className="has-text-danger">Person not found.</p>;
+  if (loading) {
+return <Loader />;
+}
+
+  if (error) {
+return <p className="has-text-danger">Failed to load person.</p>;
+}
+
+  if (!person) {
+return <p className="has-text-danger">Person not found.</p>;
+}
 
   return (
     <div>
       <h1 className="title">{person.name}</h1>
       <p>Born: {person.born}</p>
       <p>Died: {person.died}</p>
-      <p>Mother: {person.mother ? <PersonLink person={person.mother} /> : '-'}</p>
-      <p>Father: {person.father ? <PersonLink person={person.father} /> : '-'}</p>
+      <p>
+        Mother: {person.mother ? <PersonLink person={person.mother} /> : '-'}
+      </p>
+      <p>
+        Father: {person.father ? <PersonLink person={person.father} /> : '-'}
+      </p>
     </div>
   );
 };
@@ -101,11 +134,25 @@ export const App = () => {
   return (
     <>
       <div data-cy="app">
-        <nav className="navbar is-fixed-top has-shadow" data-cy="nav">
+        <nav className="navbar  has-shadow" data-cy="nav">
           <div className="container">
             <div className="navbar-brand">
-              <NavLink to="/" className={({ isActive }) => `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`}>Home</NavLink>
-              <NavLink to="/people" className={({ isActive }) => `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`}>People</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/people"
+                className={({ isActive }) =>
+                  `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+                }
+              >
+                People
+              </NavLink>
             </div>
           </div>
         </nav>
