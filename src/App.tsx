@@ -7,8 +7,8 @@ import { Person } from './types/Person'
 
 const PersonLink = ({ person }: { person?: Person }) => {
   if (!person) {
-return <span>-</span>;
-}
+    return <span>-</span>;
+  }
 
   return (
     <NavLink
@@ -35,17 +35,16 @@ const PeoplePage = () => {
   }, []);
 
   if (loading) {
-return <Loader />;
-}
+    return <Loader />;
+  }
 
   if (error) {
-return <p className="has-text-danger">Failed to load people.</p>;
-}
+    return <p className="has-text-danger " data-cy="peopleLoadingError">Failed to load people.</p>;
+  }
 
   if (people.length === 0) {
-
-return <p data-cy="noPeopleMessage">There are no people on the server</p>;
-}
+    return <p data-cy="noPeopleMessage">There are no people on the server</p>;
+  }
 
   return (
     <div>
@@ -102,16 +101,16 @@ const PersonPage = () => {
   }, [slug]);
 
   if (loading) {
-return <Loader />;
-}
+    return <Loader />;
+  }
 
   if (error) {
-return <p className="has-text-danger">Failed to load person.</p>;
-}
+    return <p className="has-text-danger">Failed to load person.</p>;
+  }
 
   if (!person) {
-return <p className="has-text-danger">Person not found.</p>;
-}
+    return <p className="has-text-danger">Person not found.</p>;
+  }
 
   return (
     <div>
