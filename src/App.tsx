@@ -71,17 +71,13 @@ const PeoplePage = () => {
           {people.map(person => (
             <tr key={person.slug} data-cy="person">
               <td>
-                <PersonLink person={person} />
+                <PersonLink person={person} data-cy="person"/>
               </td>
               <td>{person.sex}</td>
               <td>{person.born}</td>
               <td>{person.died}</td>
-              <td>
-              {person.motherName ? person.motherName : '-'}
-              </td>
-              <td>
-              {person.fatherName ? person.fatherName : '-'}
-              </td>
+              <td>{person.motherName ? person.motherName : '-'}</td>
+              <td>{person.fatherName ? person.fatherName : '-'}</td>
             </tr>
           ))}
         </tbody>
@@ -124,12 +120,8 @@ const PersonPage = () => {
       <h1 className="title">{person.name}</h1>
       <p>Born: {person.born}</p>
       <p>Died: {person.died}</p>
-      <p>
-        Mother: {person.motherName ? person.motherName : '-'}
-      </p>
-      <p>
-        Father: {person.fatherName ? person.fatherName : '-'}
-      </p>
+      <p>Mother: {person.motherName ? person.motherName : '-'}</p>
+      <p>Father: {person.fatherName ? person.fatherName : '-'}</p>
     </div>
   );
 };
